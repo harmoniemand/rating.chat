@@ -1,0 +1,21 @@
+{
+  "name": "rating-chat",
+  "description": "telegram game bot",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^3.25.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "mocha": "^5.2.0"
+  },
+  "private": true
+}
