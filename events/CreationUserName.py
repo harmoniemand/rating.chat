@@ -8,5 +8,5 @@ class CreationUserName(EventBase):
                                                                 {'text' : 'Martin', 'next_event_id': 'creation_age'},
                                                                 {'text' : 'Joni', 'next_event_id' : 'creation_age'}])
 
-    def is_available(self, profile):
+    def is_available(profile):
         return True

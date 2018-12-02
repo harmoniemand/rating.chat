@@ -7,7 +7,7 @@ class CreationAge(EventBase):
         super().__init__(chat_id=chat_id, prev_event_ids=["creation_user_name"], event_id=event_id , buttons=[{'text' :'18-24', 'next_event_id': 'creation_sex'}],
                          message_text="hello")
 
-    def is_available(self, profile):
+    def is_available(profile):
         return True
 
     def test(self):

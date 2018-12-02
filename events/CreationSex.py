@@ -6,5 +6,5 @@ class CreationSex(EventBase):
         super().__init__(chat_id=chat_id, prev_event_ids=['hello', 'hello'], event_id="creation_sex",
                  message_text="hello", buttons=[{'text' : 'test', 'next_event_id' : 'creation_age'}])
 
-    def is_available(self, profile):
+    def is_available( profile):
         return True
