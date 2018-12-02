@@ -40,9 +40,6 @@ bot.action('start_game', (ctx) => {
     var user = db.user[ctx.from.id];
     user.weapon = ctx.match[0];
 
-    console.log(ctx.match);
-    console.log(user);
-
     return ctx.reply('Gute Wahl. Viel Erfolg auf deiner Reise. Wir sehen uns schon bald wieder.\n\n liebe Grüße,\ngandalf',
         Markup.inlineKeyboard([
             Markup.callbackButton('Los gehts', 'event_startmedia'),
@@ -64,7 +61,9 @@ bot.action(/event_.*/, (ctx) => {
 
     var markup = [];
     setting.next.forEach(n => {
-        markup.push(Markup.callbackButton(n[1], 'event_' + n[0]));
+        if (n.lenght < 3 || n[5] == 'read') {
+            markup.push(Markup.callbackButton(n[1], 'event_' + n[0]));
+        }
     });
 
     return ctx.reply(setting.text,
