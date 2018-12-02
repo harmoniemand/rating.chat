@@ -16,13 +16,14 @@ def start(bot, update):
 
 def start_game(bot, update):
     profile = Profile.create(chat_id=update.message.chat_id)
+    print(update.message)
     bot.send_message(chat_id=update.message.chat_id, text='New game started')
-    profile.save()
+    Profile.save(profile=profile, chat_id=update.message.chat_id)
 
 
 def echo(bot, update):
     profile = Profile.load(chat_id=update.message.chat_id)
-    profile.save_profile()
+    Profile.save(profile=profile, chat_id=update.message.chat_id)
     bot.send_message(chat_id=update.message.chat_id, text=update.message.text)
 
 
