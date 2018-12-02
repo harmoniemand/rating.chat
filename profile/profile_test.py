@@ -11,7 +11,7 @@ from profile import Profile
 
 def start(bot, update):
     print(update.message)
-    bot.send_message(chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
+    bot.send_message(chat_id=update.message.chat_id, text="I'm a bot.py, please talk to me!")
 
 
 def start_game(bot, update):

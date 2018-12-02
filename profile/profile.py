@@ -2,15 +2,20 @@ import os
 from configparser import ConfigParser
 import ast
 import copy
+import pickle
 
 
 class Profile(object):
     @staticmethod
     def get_path(chat_id):
-        return os.path.join(os.path.normpath("."), "{}.ini".format(chat_id))
+        return os.path.join(os.path.normpath("."), "{}.pickle".format(chat_id))
 
     @classmethod
-    def save(cls, profile, chat_id):
+    def save(cls,profile,chat_id):
+        return cls._dump_pickle(chat_id,profile)
+
+    @classmethod
+    def save1(cls, profile, chat_id):
         parser = ConfigParser()
         parser = cls._set(parser=parser, profile=profile)
         with open(cls.get_path(chat_id=chat_id), 'w') as configfile:
@@ -19,6 +24,10 @@ class Profile(object):
 
     @classmethod
     def load(cls, chat_id):
+        return cls._load_pickle(chat_id)
+
+    @classmethod
+    def load1(cls, chat_id):
         parser = ConfigParser()
         parser.read(cls.get_path(chat_id=chat_id))
         profile = cls._from_file(parser)
@@ -63,7 +72,7 @@ class Profile(object):
     def create(cls, chat_id):
         cls._delete_old_profile(chat_id=chat_id)
         # create new profile
-        return cls._default()
+        return cls._default(chat_id)
 
     @classmethod
     def _set(cls, parser, profile):
@@ -83,10 +92,22 @@ class Profile(object):
             os.remove(cls.get_path(chat_id=chat_id))
 
     @classmethod
-    def _default(cls):
+    def _dump_pickle(cls,chat_id, confing):
+        with open(cls.get_path(chat_id) ,"wb") as f:
+            pickle.dump(confing, f)
+
+    @classmethod
+    def _load_pickle(cls, chat_id):
+        with open(cls.get_path(chat_id), "rb") as f:
+            return pickle.load(f)
+
+    @classmethod
+    def _default(cls, chat_id):
         config = {
             'basic': {
+                'chat_id' : chat_id,
                 'message_id': 0,
+                'name' : '',
                 'age_group': 0,
                 'origin': 0,
                 'sex': 0,
@@ -101,8 +122,11 @@ class Profile(object):
             },
             'progress': {
                 'stage_id': 0,
-                'story_id': 0,
-                'event_id': 0
-            }
+                'event_id': 'start',
+            },
+
+                'event_list': {
+                }
+
         }
         return config

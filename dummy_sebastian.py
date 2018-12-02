@@ -1,6 +1,6 @@
 # import telegram
-# bot = telegram.Bot()
-# print(bot.get_me())
+# bot.py = telegram.Bot()
+# print(bot.py.get_me())
 
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -13,7 +13,7 @@ import logging
 
 def start(bot, update):
     print(update.message)
-    bot.send_message(chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
+    bot.send_message(chat_id=update.message.chat_id, text="I'm a bot.py, please talk to me!")
 
 
 def caps(bot, update, args):

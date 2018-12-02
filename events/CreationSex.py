@@ -1,12 +1,10 @@
-from src.event import EventBase
+from event_base.event import EventBase
 
 
 class CreationSex(EventBase):
-    def __init__(self, chat_id: int, massage_id: int, event_id: str, prev_event_ids: list,
-                 message_text: str, buttons: list):
-        super().__init__(self, chat_id, massage_id, event_id, prev_event_ids,
-                         message_text, buttons)
-        print("asdr")
+    def __init__(self, chat_id: int):
+        super().__init__(chat_id=chat_id, prev_event_ids=['hello', 'hello'], event_id="creation_sex",
+                 message_text="hello", buttons=[{'text' : 'test', 'next_event_id' : 'creation_age'}])
 
     def is_available(self, profile):
         return True
